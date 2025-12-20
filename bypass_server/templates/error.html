@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Token Error</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="error-box">
+            <div class="error-icon">
+                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="10" stroke="#ff4757" stroke-width="2"/>
+                    <path d="M15 9L9 15M9 9L15 15" stroke="#ff4757" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <h1>Token Error</h1>
+            <p class="error-message">{{ error_message }}</p>
+            <a href="{{ bot_link }}" class="btn-primary">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 4V20M12 4L8 8M12 4L16 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Get New Token
+            </a>
+        </div>
+    </div>
+</body>
+</html>

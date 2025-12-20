@@ -19,6 +19,12 @@ from user_bot.handlers import (
     verify_handler,
     chat_join_request
 )
+from schedulers import (
+    token_cleanup_scheduler,
+    create_message_deleter_scheduler,
+    create_broadcast_deleter_scheduler,
+    token_count_reset_scheduler
+)
 
 logging.basicConfig(
     level=logging.INFO,
@@ -54,11 +60,26 @@ async def main():
     
     await set_bot_commands(bot)
     
+    token_cleanup_scheduler.start()
+    token_count_reset_scheduler.start()
+    
+    message_deleter = create_message_deleter_scheduler(bot)
+    message_deleter.start()
+    
+    broadcast_deleter = create_broadcast_deleter_scheduler(bot)
+    broadcast_deleter.start()
+    
     logger.info("User Bot started successfully!")
+    logger.info("🔧 All schedulers started!")
     
     try:
         await dp.start_polling(bot)
     finally:
+        token_cleanup_scheduler.stop()
+        token_count_reset_scheduler.stop()
+        message_deleter.stop()
+        broadcast_deleter.stop()
+        
         await db.close()
         await bot.session.close()
 

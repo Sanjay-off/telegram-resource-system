@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="redirect-box">
+            <div class="success-icon">
+                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="10" stroke="#2ecc71" stroke-width="2"/>
+                    <path d="M8 12L11 15L16 9" stroke="#2ecc71" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <h1>Verification Successful!</h1>
+            <p class="redirect-message">Redirecting to Telegram in <span id="countdown">3</span> seconds...</p>
+            <div class="loader"></div>
+            <a href="{{ redirect_url }}" class="btn-primary" id="manualRedirect">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Continue to Telegram
+            </a>
+        </div>
+    </div>
+    <script>
+        const redirectUrl = "{{ redirect_url }}";
+        let countdown = 3;
+        const countdownElement = document.getElementById('countdown');
+        
+        const timer = setInterval(() => {
+            countdown--;
+            countdownElement.textContent = countdown;
+            
+            if (countdown <= 0) {
+                clearInterval(timer);
+                window.location.href = redirectUrl;
+            }
+        }, 1000);
+        
+        document.getElementById('manualRedirect').addEventListener('click', () => {
+            clearInterval(timer);
+        });
+    </script>
+</body>
+</html>
