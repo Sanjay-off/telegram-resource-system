@@ -45,27 +45,26 @@ class TokenOperations:
     
     async def get_user_token_count_today(self, user_id: int) -> int:
         collection = db.get_collection(self.count_collection)
-        today = datetime.utcnow().date()
-        
+        today_start = datetime.utcnow().replace(hour=0, minute=0, second=0, microsecond=0)
+        today_end = datetime.utcnow().replace(hour=23, minute=59, second=59, microsecond=999999)
         result = await collection.find_one({
             "user_id": user_id,
-            "date": today
+            "date": {"$gte": today_start, "$lte": today_end}
         })
         
         return result["token_generated"] if result else 0
     
     async def increment_user_token_count(self, user_id: int):
         collection = db.get_collection(self.count_collection)
-        today = datetime.utcnow().date()
-        
+        today_start = datetime.utcnow().replace(hour=0, minute=0, second=0, microsecond=0)
+        today_end = datetime.utcnow().replace(hour=23, minute=59, second=59, microsecond=999999)
         existing = await collection.find_one({
             "user_id": user_id,
-            "date": today
+            "date": {"$gte": today_start, "$lte": today_end}
         })
-        
         if existing:
             await collection.update_one(
-                {"user_id": user_id, "date": today},
+                {"user_id": user_id, "date": {"$gte": today_start, "$lte": today_end}},
                 TokenGeneratorCountModel.increment_count()
             )
         else:
@@ -75,7 +74,7 @@ class TokenOperations:
     
     async def clear_token_counts(self):
         collection = db.get_collection(self.count_collection)
-        yesterday = datetime.utcnow().date()
+        yesterday = datetime.utcnow().replace(hour=0, minute=0, second=0, microsecond=0)
         await collection.delete_many({"date": {"$lt": yesterday}})
 
 token_ops = TokenOperations()

@@ -34,7 +34,8 @@ class MessageDeleterScheduler:
                     unique_id = deletion['unique_id']
                     user_id = deletion['user_id']
                     
-                    for message_id in message_ids:
+                    warning_message_id = message_ids[-1]  # Last message is the warning
+                    for message_id in message_ids[:-1]:  # Delete all except the last one
                         try:
                             await self.bot.delete_message(
                                 chat_id=chat_id,
@@ -44,9 +45,26 @@ class MessageDeleterScheduler:
                         except Exception as e:
                             logger.warning(f"Failed to delete message {message_id}: {e}")
                             failed_count += 1
-                    
-                    from user_bot.handlers.resource_delivery import send_deleted_notification
-                    await send_deleted_notification(self.bot, user_id, chat_id, unique_id)
+
+                    # Edit the warning message to show deleted notification
+                    from shared.constants import DELETED_MESSAGE
+                    from user_bot.keyboards import get_deleted_message_keyboard
+                    from shared.config import config
+
+                    deleted_text = DELETED_MESSAGE.format(
+                        link=f"https://t.me/{config.USER_BOT_USERNAME}?start={unique_id}"
+                    )
+
+                    try:
+                        await self.bot.edit_message_text(
+                            chat_id=chat_id,
+                            message_id=warning_message_id,
+                            text=deleted_text,
+                            reply_markup=get_deleted_message_keyboard(config.USER_BOT_USERNAME, unique_id),
+                            parse_mode="HTML"
+                        )
+                    except Exception as e:
+                        logger.warning(f"Failed to edit warning message: {e}")
                     
                     await deletion_ops.delete_pending_deletion(str(deletion['_id']))
                     

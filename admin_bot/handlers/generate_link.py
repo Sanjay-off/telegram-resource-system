@@ -105,7 +105,7 @@ async def process_extra_message(message: Message, state: FSMContext, bot: Bot):
     )
     
     await message.answer(
-        f"✅ Resource uploaded successfully!\n\n{template}",
+        template,
         reply_markup=get_download_button(config.USER_BOT_USERNAME, unique_id)
     )
     
