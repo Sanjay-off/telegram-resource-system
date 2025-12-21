@@ -26,7 +26,7 @@ class TokenValidator:
         status = token_data.get('status')
         
         # Check if already used
-        if status in [TOKEN_STATUS_VERIFIED, TOKEN_STATUS_BYPASSED]:
+        if status in [TOKEN_STATUS_VERIFIED]:
             return False, "already_used", token_data
         
         # Time-based bypass detection

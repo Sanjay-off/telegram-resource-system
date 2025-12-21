@@ -24,7 +24,7 @@ def run_async(coro):
 @app.route('/redirect', methods=['GET'])
 def redirect_endpoint():
     token = request.args.get('token')
-    
+    # print(token_validator.whitelist_domains)
     if not token:
         return render_template(
             'error.html',
@@ -33,7 +33,7 @@ def redirect_endpoint():
         ), 400
     
     referer = request.headers.get('Referer')
-    
+    # print(referer,"========")
     try:
         is_valid, status, token_data = token_validator.validate_token(token, referer)
     except Exception as e:
