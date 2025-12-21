@@ -35,6 +35,19 @@ async def cmd_start(message: Message):
         if payload.startswith("verify_"):
             await handle_verify_callback(message, payload)
         elif payload == "newToken":
+            # Check token limit before generating new token
+            from database.operations import token_ops, config_ops
+            
+            token_count = await token_ops.get_user_token_count_today(user_id)
+            token_limit = await config_ops.get_token_generation_limit()
+            
+            if token_count >= token_limit:
+                await message.answer(
+                    f"❌ You have reached your daily token generation limit ({token_limit} tokens).\n\n"
+                    f"Please try again tomorrow."
+                )
+                return
+            
             from user_bot.handlers.token_handler import handle_new_token_request
             await handle_new_token_request(message)
         else:

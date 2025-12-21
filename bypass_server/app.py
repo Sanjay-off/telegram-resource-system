@@ -62,8 +62,21 @@ def redirect_endpoint():
             ), 400
         
         elif status in ["bypass_time", "bypass_origin"]:
-            redirect_url = token_validator.get_redirect_url(token_data, config.USER_BOT_USERNAME)
-            return redirect(redirect_url)
+            if token_data:  # ADD THIS CHECK
+                redirect_url = token_validator.get_redirect_url(token_data, config.USER_BOT_USERNAME)
+                return redirect(redirect_url)
+            else:
+                return render_template(
+                    'error.html',
+                    error_message="Token invalid or expired",
+                    bot_link=f"https://t.me/{config.USER_BOT_USERNAME}?start=newToken"
+                ), 400
+    if not token_data:  # ADD THIS CHECK
+        return render_template(
+            'error.html',
+            error_message="Token invalid or expired",
+            bot_link=f"https://t.me/{config.USER_BOT_USERNAME}?start=newToken"
+        ), 400
     
     redirect_url = token_validator.get_redirect_url(token_data, config.USER_BOT_USERNAME)
     
