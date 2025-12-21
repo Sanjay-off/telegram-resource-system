@@ -35,11 +35,11 @@ def redirect_endpoint():
     referer = request.headers.get('Referer')
     
     try:
-        is_valid, status, token_data = run_async(
-            token_validator.validate_token(token, referer)
-        )
+        is_valid, status, token_data = token_validator.validate_token(token, referer)
     except Exception as e:
         print(f"Error validating token: {e}")
+        import traceback
+        traceback.print_exc()
         return render_template(
             'error.html',
             error_message="An error occurred. Please try again.",
