@@ -6,6 +6,7 @@ from aiogram.types import BotCommand
 from shared.config import config
 from database.connection import db
 from admin_bot.middlewares import AdminAuthMiddleware
+from admin_bot.handlers import cancel
 from admin_bot.handlers import (
     start,
     generate_link,
@@ -52,7 +53,7 @@ async def main():
     
     dp.message.middleware(AdminAuthMiddleware())
     dp.callback_query.middleware(AdminAuthMiddleware())
-    
+    dp.include_router(cancel.router)
     dp.include_router(start.router)
     dp.include_router(generate_link.router)
     dp.include_router(regenerate_post.router)
