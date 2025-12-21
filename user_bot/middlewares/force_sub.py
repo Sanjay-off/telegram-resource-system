@@ -1,6 +1,7 @@
 from typing import Callable, Dict, Any, Awaitable
 from aiogram import BaseMiddleware, Bot
-from aiogram.types import Message, ChatMemberStatus
+from aiogram.types import Message 
+from aiogram.enums import ChatMemberStatus
 from database.operations import config_ops, user_ops
 from user_bot.keyboards import get_force_sub_keyboard
 from shared.constants import FORCE_SUB_MESSAGE
