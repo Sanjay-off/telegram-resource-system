@@ -33,7 +33,7 @@ async def handle_new_token_request(message: Message):
     
     await token_ops.create_token(token_data)
     
-    destination_url = f"http://{config.SERVER_HOST}:{config.SERVER_PORT}/redirect?token={token}"
+    destination_url = f"https://{config.SERVER_HOST}:{config.SERVER_PORT}/redirect?token={token}"
     
     shortened_url = await url_shortener.shorten_url(destination_url)
     
