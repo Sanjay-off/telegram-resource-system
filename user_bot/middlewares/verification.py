@@ -24,6 +24,7 @@ class VerificationMiddleware(BaseMiddleware):
         if event.text and any(cmd in event.text for cmd in self.exempt_commands):
             return await handler(event, data)
         
+       
         if data.get('force_sub_blocked'):
             return
 
@@ -36,22 +37,37 @@ class VerificationMiddleware(BaseMiddleware):
             return await handler(event, data)
         
         user_access_count = user.get('user_access_count', 0)
-        
+
         if user_access_count > 0:
             return await handler(event, data)
-        
+
+        # CHECK TOKEN LIMIT BEFORE GENERATING NEW TOKEN
+        token_count = await token_ops.get_user_token_count_today(user_id)
+        token_limit = await config_ops.get_token_generation_limit()
+
+        if token_count >= token_limit:
+            await event.answer(
+                f"❌ You have reached your daily token generation limit ({token_limit} tokens).\n\n"
+                f"Please try again tomorrow."
+            )
+            return
+
+        # If user doesn't have access, generate verification token
         media_access_count = await config_ops.get_media_access_count()
-        
+
         token = generate_token(35)
         unique_id = generate_unique_id(10)
-        
+
         token_data = TokenModel.create_document(
             token=token,
             unique_id=unique_id,
             created_by=user_id
         )
-        
+
         await token_ops.create_token(token_data)
+
+        # INCREMENT TOKEN COUNT AFTER CREATING TOKEN
+        await token_ops.increment_user_token_count(user_id)
         
         destination_url = f"https://{config.SERVER_HOST}:{config.SERVER_PORT}/redirect?token={token}"
 
@@ -69,7 +85,7 @@ class VerificationMiddleware(BaseMiddleware):
             media_access_count=media_access_count
         )
         
-
+        
         await event.edit_text(
             message_text,
             reply_markup=get_verification_keyboard(shortened_url, how_to_verify_link)

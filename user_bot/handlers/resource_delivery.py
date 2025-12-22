@@ -24,7 +24,16 @@ async def handle_resource_request(message: Message, unique_id: str):
     
     if user_access_count <= 0:
        
-    # Import what we need
+        # Import what we need
+        token_count = await token_ops.get_user_token_count_today(user_id)
+        token_limit = await config_ops.get_token_generation_limit()
+        
+        if token_count >= token_limit:
+            await message.answer(
+                f"❌ You have reached your daily token generation limit ({token_limit} tokens).\n\n"
+                f"Please try again tomorrow."
+            )
+            return
         # from database.operations import config_ops
         from database.models import TokenModel
         from user_bot.keyboards import get_verification_keyboard
