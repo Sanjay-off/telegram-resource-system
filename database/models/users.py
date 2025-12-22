@@ -30,7 +30,7 @@ class UserModel:
     @staticmethod
     def set_access_count(count: int) -> dict:
         return {
-            "$set": {"user_access_count": count}
+            "$inc": {"user_access_count": count}
         }
     
     @staticmethod

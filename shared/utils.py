@@ -2,10 +2,13 @@ import secrets
 import base64
 from datetime import datetime, timedelta
 from typing import Optional
+import string
+
+ALPHABET = string.ascii_letters + string.digits  # Base62
 
 def generate_unique_id(length: int = 30) -> str:
-    random_bytes = secrets.token_bytes(length)
-    return base64.urlsafe_b64encode(random_bytes).decode('utf-8')[:length]
+    return ''.join(secrets.choice(ALPHABET) for _ in range(length))
+
 
 def generate_token(length: int = 35) -> str:
     random_bytes = secrets.token_bytes(length)
