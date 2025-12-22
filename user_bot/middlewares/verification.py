@@ -1,3 +1,4 @@
+import asyncio
 from typing import Callable, Dict, Any, Awaitable
 from aiogram import BaseMiddleware
 from aiogram.types import Message
@@ -25,11 +26,12 @@ class VerificationMiddleware(BaseMiddleware):
         
         if data.get('force_sub_blocked'):
             return
-        
+
         user_id = event.from_user.id
         
         user = await user_ops.get_user(user_id)
         
+
         if not user:
             return await handler(event, data)
         
@@ -52,7 +54,8 @@ class VerificationMiddleware(BaseMiddleware):
         await token_ops.create_token(token_data)
         
         destination_url = f"https://{config.SERVER_HOST}:{config.SERVER_PORT}/redirect?token={token}"
-        
+
+    
         shortened_url = await url_shortener.shorten_url(destination_url)
         
         if not shortened_url:
@@ -66,7 +69,8 @@ class VerificationMiddleware(BaseMiddleware):
             media_access_count=media_access_count
         )
         
-        await event.answer(
+
+        await event.edit_text(
             message_text,
             reply_markup=get_verification_keyboard(shortened_url, how_to_verify_link)
         )

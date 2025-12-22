@@ -77,33 +77,35 @@ async def process_broadcast_duration(message: Message, state: FSMContext, bot: B
     
     await broadcast_ops.create_broadcast(broadcast_data)
     
+    user_bot = Bot(token=config.USER_BOT_TOKEN)
+    
     for user in users:
         try:
             if data['file_type'] == "text":
-                await bot.send_message(
+                await user_bot.send_message(  # ← Use USER BOT now!
                     chat_id=user['user_id'],
                     text=data['text']
                 )
             elif data['file_type'] == "photo":
-                await bot.send_photo(
+                await user_bot.send_photo(  # ← Use USER BOT
                     chat_id=user['user_id'],
                     photo=data['file_id'],
                     caption=data['caption']
                 )
             elif data['file_type'] == "video":
-                await bot.send_video(
+                await user_bot.send_video(  # ← Use USER BOT
                     chat_id=user['user_id'],
                     video=data['file_id'],
                     caption=data['caption']
                 )
             elif data['file_type'] == "document":
-                await bot.send_document(
+                await user_bot.send_document(  # ← Use USER BOT
                     chat_id=user['user_id'],
                     document=data['file_id'],
                     caption=data['caption']
                 )
             elif data['file_type'] == "audio":
-                await bot.send_audio(
+                await user_bot.send_audio(  # ← Use USER BOT
                     chat_id=user['user_id'],
                     audio=data['file_id'],
                     caption=data['caption']
@@ -115,6 +117,9 @@ async def process_broadcast_duration(message: Message, state: FSMContext, bot: B
         except Exception as e:
             failed += 1
             print(f"Failed to send broadcast to user {user['user_id']}: {e}")
+
+    # Close user bot session after broadcast
+    await user_bot.session.close()
     
     await status_msg.edit_text(
         f"✅ Broadcast completed!\n\n"

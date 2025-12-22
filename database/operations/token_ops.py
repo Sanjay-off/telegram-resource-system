@@ -72,9 +72,10 @@ class TokenOperations:
                 TokenGeneratorCountModel.create_document(user_id)
             )
     
+
     async def clear_token_counts(self):
         collection = db.get_collection(self.count_collection)
-        yesterday = datetime.utcnow().replace(hour=0, minute=0, second=0, microsecond=0)
-        await collection.delete_many({"date": {"$lt": yesterday}})
+        today = datetime.utcnow().replace(hour=0, minute=0, second=0, microsecond=0)
+        await collection.delete_many({"date": {"$lt": today}})
 
 token_ops = TokenOperations()
