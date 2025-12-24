@@ -11,14 +11,14 @@ async def cmd_start(message: Message):
     welcome_text = f"""👋 Welcome, {admin_name}!
 
 You are now in the Admin Panel.
-
+<blockquote>
 Use the menu commands to manage:
 • Generate Links
 • Manage Resources
 • Configure Settings
 • Manage Users
 • Broadcast Messages
-
+</blockquote>
 Type /help for command list."""
     
-    await message.answer(welcome_text)
+    await message.answer(welcome_text, parse_mode="HTML")

@@ -58,5 +58,6 @@ async def cmd_start(message: Message):
         
         await message.answer(
             welcome_text,
+            parse_mode="HTML",
             message_effect_id=config.FIRE_EFFECT
         )

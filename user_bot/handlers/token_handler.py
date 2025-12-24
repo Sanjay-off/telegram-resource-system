@@ -50,5 +50,6 @@ async def handle_new_token_request(message: Message):
     
     await message.answer(
         message_text,
+        parse_mode="HTML",
         reply_markup=get_verification_keyboard(shortened_url, how_to_verify_link)
     )

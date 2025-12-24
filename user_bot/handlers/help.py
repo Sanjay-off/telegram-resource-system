@@ -11,4 +11,4 @@ async def cmd_help(message: Message):
     username = format_username(message.from_user)
     help_text = USER_HELP_MESSAGE.format(username=username)
     
-    await message.answer(help_text)
+    await message.answer(help_text,parse_mode="HTML")

@@ -80,14 +80,16 @@ class VerificationMiddleware(BaseMiddleware):
         how_to_verify_link = await config_ops.get_how_to_verify_link()
         
         username = format_username(event.from_user)
+        
         message_text = VERIFICATION_MESSAGE.format(
             username=username,
             media_access_count=media_access_count
         )
         
         
-        await event.edit_text(
+        await event.answer(
             message_text,
+            parse_mode="HTML",
             reply_markup=get_verification_keyboard(shortened_url, how_to_verify_link)
         )
         

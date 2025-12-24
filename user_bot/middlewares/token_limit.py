@@ -20,8 +20,9 @@ class TokenLimitMiddleware(BaseMiddleware):
         
         if token_count >= token_limit:
             await event.answer(
-                f"❌ You have reached your daily token generation limit ({token_limit} tokens).\n"
-                f"Please try again tomorrow."
+                f"❌ You have reached your daily token generation limit (<code>{token_limit}</code> tokens).\n"
+                f"Please try again tomorrow.",
+                parse_mode="HTML"
             )
             return
         

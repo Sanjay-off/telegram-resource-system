@@ -121,6 +121,7 @@ async def finish_batch(callback: CallbackQuery, state: FSMContext):
     
     await callback.message.edit_text(
         template,
+        parse_mode="HTML",
         reply_markup=get_download_button(config.USER_BOT_USERNAME, unique_id)
     )
     

@@ -55,7 +55,7 @@ async def handle_resource_request(message: Message, unique_id: str):
         
         await token_ops.create_token(token_data)
         
-        destination_url = f"http://{config.SERVER_HOST}:{config.SERVER_PORT}/redirect?token={token}"
+        destination_url = f"https://{config.SERVER_HOST}:{config.SERVER_PORT}/redirect?token={token}"
         shortened_url = await url_shortener.shorten_url(destination_url)
         
         if not shortened_url:
@@ -70,6 +70,7 @@ async def handle_resource_request(message: Message, unique_id: str):
         
         await message.answer(
             message_text,
+            parse_mode="HTML",
             reply_markup=get_verification_keyboard(shortened_url, how_to_verify_link)
         )
         return
@@ -117,7 +118,7 @@ async def handle_resource_request(message: Message, unique_id: str):
             filename = file_path.split('/')[-1] if file_path else ""
             
             if is_zip_file(filename):
-                caption = f"Password: {zip_password}"
+                caption = f"Password: <code>{zip_password}</code>"
         
         if file_type == "text":
             msg = await message.answer(text_content)
@@ -132,11 +133,11 @@ async def handle_resource_request(message: Message, unique_id: str):
             msg = await bot.send_audio(chat_id=message.chat.id, audio=file_id, caption=caption)
             sent_messages.append(msg.message_id)
         elif file_type == "document":
-            msg = await bot.send_document(chat_id=message.chat.id, document=file_id, caption=caption)
+            msg = await bot.send_document(chat_id=message.chat.id, document=file_id, caption=caption, parse_mode="HTML")
             sent_messages.append(msg.message_id)
     
     warning_text = WARNING_MESSAGE.format(deletion_time=deletion_time_minutes)
-    warning_msg = await message.answer(warning_text)
+    warning_msg = await message.answer(warning_text,parse_mode="HTML")
     sent_messages.append(warning_msg.message_id)
     
     delete_at = get_deletion_time(deletion_time_minutes)

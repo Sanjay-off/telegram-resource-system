@@ -70,6 +70,7 @@ class ForceSubMiddleware(BaseMiddleware):
             
             await event.answer(
                 message_text,
+                parse_mode="HTML",
                 reply_markup=get_force_sub_keyboard(not_subscribed, unique_id, config.USER_BOT_USERNAME)
             )
             return

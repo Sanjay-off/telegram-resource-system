@@ -9,47 +9,60 @@ FILE_TYPE_PHOTO = "photo"
 FILE_TYPE_TEXT = "text"
 
 USER_START_MESSAGE = """⚡️ Hᴇʏ, {username} ~
-
+<blockquote>
 I ᴀᴍ ᴀɴ ᴀᴅᴠᴀɴᴄᴇ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ ʙᴏᴛ.
-use the link in the public group to access the media"""
+use the link in the public group to access the media
+</blockquote>
+"""
 
 USER_HELP_MESSAGE = """⁉️ Hᴇʟʟᴏ {username} ~
-
+<blockquote>
 I ᴀᴍ ᴀ ғɪʟᴇ sᴜᴘᴘʟɪᴇʀ ʙᴏᴛ ᴀɴᴅ ᴍᴇᴀɴᴛ ᴛᴏ ᴘʀᴏᴠɪᴅᴇs ғɪʟᴇs ғʀᴏᴍ sᴘᴇᴄɪғɪᴇᴅ ᴄʜᴀɴɴᴇʟs. Yᴏᴜ ɴᴇᴇᴅ ᴛᴏ ᴊᴏɪɴ Mᴇɴᴛɪᴏɴᴇᴅ Cʜᴀɴɴᴇʟs ᴛᴏ ɢᴇᴛ Fɪʟᴇs ᴏʀ ɪɴɪᴛɪᴀᴛᴇ ᴍᴇssᴀɢᴇs...
-
+</blockquote>
 /help - Oᴘᴇɴ ᴛʜɪs ʜᴇʟᴘ ᴍᴇssᴀɢᴇ !
 Yᴏᴜ ᴄᴀɴ ᴜsᴇ ᴀʙᴏᴠᴇ ᴄᴏᴍᴍᴀɴᴅs ᴡɪᴛʜᴏᴜᴛ ᴊᴏɪɴɪɴɢ ғᴏʀᴄᴇ-sᴜʙ ᴄʜᴀɴɴᴇʟs"""
 
 FORCE_SUB_MESSAGE = """›› ʜᴇʏ, {username} ×
-
+<blockquote>
 ʏᴏᴜʀ ғɪʟᴇ ɪs ʀᴇᴀᴅʏ ‼️ ʟᴏᴏᴋs ʟɪᴋᴇ ʏᴏᴜ ʜᴀᴠᴇɴ'ᴛ sᴜʙsᴄʀɪʙᴇᴅ ᴛᴏ ᴏᴜʀ ᴄʜᴀɴɴᴇʟs ʏᴇᴛ,
-sᴜʙsᴄʀɪʙᴇ ɴᴏᴡ ᴛᴏ ɢᴇᴛ ʏᴏᴜʀ ғɪʟᴇs."""
+sᴜʙsᴄʀɪʙᴇ ɴᴏᴡ ᴛᴏ ɢᴇᴛ ʏᴏᴜʀ ғɪʟᴇs.
+</blockquote>
+"""
 
 VERIFICATION_MESSAGE = """⚡️ ʜᴇʏ, {username} ×~
-
-›› ʏᴏᴜ ɴᴇᴇᴅ ᴛᴏ ᴠᴇʀɪꜰʏ ᴀ ᴛᴏᴋᴇɴ ᴛᴏ ɢᴇᴛ ꜰʀᴇᴇ ᴀᴄᴄᴇss ꜰᴏʀ {media_access_count} media ✅"""
+<blockquote>
+›› ʏᴏᴜ ɴᴇᴇᴅ ᴛᴏ ᴠᴇʀɪꜰʏ ᴀ ᴛᴏᴋᴇɴ ᴛᴏ ɢᴇᴛ ꜰʀᴇᴇ ᴀᴄᴄᴇss ꜰᴏʀ {media_access_count} media ✅
+</blockquote>
+"""
 
 WARNING_MESSAGE = """⚠️ Tᴇʟᴇɢʀᴀᴍ Mғ Dᴏɴᴛ Lɪᴋᴇ Iᴛ Sᴏ....
-Yᴏᴜʀ ғɪʟᴇs ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ᴡɪᴛʜɪɴ {deletion_time} Mɪɴᴜᴛᴇs. Sᴏ ᴘʟᴇᴀsᴇ ғᴏʀᴡᴀʀᴅ ᴛʜᴇᴍ ᴛᴏ ᴀɴʏ ᴏᴛʜᴇʀ ᴘʟᴀᴄᴇ ғᴏʀ ғᴜᴛᴜʀᴇ ᴀᴠᴀɪʟᴀʙɪʟɪᴛʏ."""
+<blockquote>
+Yᴏᴜʀ ғɪʟᴇs ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ᴡɪᴛʜɪɴ {deletion_time} Mɪɴᴜᴛᴇs. Sᴏ ᴘʟᴇᴀsᴇ ғᴏʀᴡᴀʀᴅ ᴛʜᴇᴍ ᴛᴏ ᴀɴʏ ᴏᴛʜᴇʀ ᴘʟᴀᴄᴇ ғᴏʀ ғᴜᴛᴜʀᴇ ᴀᴠᴀɪʟᴀʙɪʟɪᴛʏ.
+</blockquote>
+"""
 
 DELETED_MESSAGE = """Pʀᴇᴠɪᴏᴜs Mᴇssᴀɢᴇ ᴡᴀs Dᴇʟᴇᴛᴇᴅ 🗑
-Iғ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ɢᴇᴛ ᴛʜᴇ ғɪʟᴇs ᴀɢᴀɪɴ, ᴛʜᴇɴ ᴄʟɪᴄᴋ: <a href="{link}">♻️ Cʟɪᴄᴋ Hᴇʀᴇ</a> ʙᴜᴛᴛᴏɴ ʙᴇʟᴏᴡ ᴇʟsᴇ ᴄʟᴏsᴇ ᴛʜɪs ᴍᴇssᴀɢᴇ."""
+<blockquote>
+Iғ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ɢᴇᴛ ᴛʜᴇ ғɪʟᴇs ᴀɢᴀɪɴ, ᴛʜᴇɴ ᴄʟɪᴄᴋ: [<a href="{link}">♻️ Cʟɪᴄᴋ Hᴇʀᴇ</a>] ʙᴜᴛᴛᴏɴ ʙᴇʟᴏᴡ ᴇʟsᴇ ᴄʟᴏsᴇ ᴛʜɪs ᴍᴇssᴀɢᴇ.
+</blockquote>"""
 
 BYPASS_DETECTED_MESSAGE = """🚨 ʙʏᴘᴀss ᴅᴇᴛᴇᴄᴛᴇᴅ 🚨
-
+<blockquote>
 ʜᴏᴡ ᴍᴀɴʏ ᴛɪᴍᴇs ʜᴀᴠᴇ ɪ ᴛᴏʟᴅ ʏᴏᴜ, ᴅᴏɴ'ᴛ ᴛʀʏ ᴛᴏ ᴏᴜᴛsᴍᴀʀᴛ ʏᴏᴜʀ ᴅᴀᴅ 🥸🖕
 
-ɴᴏᴡ sᴏʟᴠᴇ ɪᴛ ᴘʀᴏᴘᴇʀʟʏ!!"""
+ɴᴏᴡ sᴏʟᴠᴇ ɪᴛ ᴘʀᴏᴘᴇʀʟʏ!!
+</blockquote>
+"""
 
-ACCESS_COUNT_MESSAGE = "You currently have {user_access_count} free media access"
+ACCESS_COUNT_MESSAGE = "<blockquote>You currently have {user_access_count} free media access</blockquote>"
 
 NOT_AUTHORIZED_MESSAGE = "Not authorized"
 
 POST_TEMPLATE = """Post no-{post_no}
 
-Description-{description}
+Description-{description}☠️
 
-{extra_message}"""
+<blockquote>{extra_message}</blockquote>"""
 
 DEFAULT_MEDIA_ACCESS_COUNT = 10
 DEFAULT_DELETION_TIME = 30

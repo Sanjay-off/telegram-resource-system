@@ -42,18 +42,20 @@ async def handle_verify_callback(message: Message, payload: str):
         user_access_count = user.get('user_access_count', 0)
         
         await message.answer(
-            ACCESS_COUNT_MESSAGE.format(user_access_count=user_access_count)
+            ACCESS_COUNT_MESSAGE.format(user_access_count=user_access_count),
+             parse_mode="HTML"
         )
         
     elif status == TOKEN_STATUS_BYPASSED:
-        await message.answer(BYPASS_DETECTED_MESSAGE)
+        await message.answer(BYPASS_DETECTED_MESSAGE, parse_mode="HTML")
         
         user = await user_ops.get_user(user_id)
         user_access_count = user.get('user_access_count', 0)
         
         await message.answer(
-            ACCESS_COUNT_MESSAGE.format(user_access_count=user_access_count)
+            ACCESS_COUNT_MESSAGE.format(user_access_count=user_access_count),
+            parse_mode="HTML"
         )
     
     else:
-        await message.answer("❌ Please complete the verification process first.")
+        await message.answer("<b>❌Please complete the verification process first.</b>",parse_mode="HTML")

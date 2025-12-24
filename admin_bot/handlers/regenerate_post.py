@@ -49,6 +49,7 @@ async def process_regenerate(message: Message, state: FSMContext):
         keyboard = get_download_button(config.USER_BOT_USERNAME, file_data['unique_id'])
         await message.answer(
             f"✅ Post Template:\n\n{template}",
+             parse_mode="HTML",
             reply_markup=keyboard
         )
     

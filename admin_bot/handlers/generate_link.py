@@ -104,8 +104,11 @@ async def process_extra_message(message: Message, state: FSMContext, bot: Bot):
         extra_message=extra_message
     )
     
-    await message.answer(
-        template,
+    await bot.send_photo(
+        chat_id=message.chat.id,
+        photo="AgACAgUAAxkBAAIG0mlLncS1vcxKAgJDX3bgqXfR51xCAALOC2sbv5NYVrk-ViWJxqBrAQADAgADeQADNgQ",
+        caption=template,
+        parse_mode="HTML",
         reply_markup=get_download_button(config.USER_BOT_USERNAME, unique_id)
     )
     
