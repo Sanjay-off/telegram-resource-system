@@ -54,7 +54,7 @@ async def handle_resource_request(message: Message, unique_id: str):
         )
         
         await token_ops.create_token(token_data)
-        
+        await token_ops.increment_user_token_count(user_id)
         destination_url = f"https://{config.SERVER_HOST}:{config.SERVER_PORT}/redirect?token={token}"
         shortened_url = await url_shortener.shorten_url(destination_url)
         
