@@ -43,8 +43,9 @@ async def cmd_start(message: Message):
             
             if token_count >= token_limit:
                 await message.answer(
-                    f"❌ You have reached your daily token generation limit ({token_limit} tokens).\n\n"
-                    f"Please try again tomorrow."
+                    f"❌ ʏᴏᴜ ʜᴀᴠᴇ ʀᴇᴀᴄʜᴇᴅ ʏᴏᴜʀ ᴅᴀɪʟʏ ᴛᴏᴋᴇɴ ɢᴇɴᴇʀᴀᴛɪᴏɴ ʟɪᴍɪᴛ (<code>{token_limit}</code> ᴛᴏᴋᴇɴs).\n\n"
+                    f"ᴘʟᴇᴀsᴇ ᴛʀʏ ᴀɢᴀɪɴ ᴛᴏᴍᴏʀʀᴏᴡ.",
+                    parse_mode="HTML"
                 )
                 return
             

@@ -88,7 +88,7 @@ async def process_batch_resource(message: Message, state: FSMContext, bot: Bot):
     )
 
 @router.callback_query(F.data == "finish_batch")
-async def finish_batch(callback: CallbackQuery, state: FSMContext):
+async def finish_batch(callback: CallbackQuery, state: FSMContext,bot: Bot):
     data = await state.get_data()
     batch_files = data.get('batch_files', [])
     
@@ -124,6 +124,17 @@ async def finish_batch(callback: CallbackQuery, state: FSMContext):
         parse_mode="HTML",
         reply_markup=get_download_button(config.USER_BOT_USERNAME, unique_id)
     )
+
+    await bot.send_photo(
+            chat_id=config.PUBLIC_CHANNEL_USERNAME,
+            photo=config.COVER_PHOTO,
+            caption=template,
+            parse_mode="HTML",
+            reply_markup=get_download_button(
+                config.USER_BOT_USERNAME,
+                unique_id
+            )
+        )
     
     await state.clear()
     await callback.answer()

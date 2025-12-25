@@ -15,7 +15,7 @@ class Config:
     
     MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/")
     DB_NAME = os.getenv("DB_NAME", "telegram_resource_system")
-    
+    COVER_PHOTO = os.getenv("COVER_PHOTO", "AgACAgUAAxkBAAIG0mlLncS1vcxKAgJDX3bgqXfR51xCAALOC2sbv5NYVrk-ViWJxqBrAQADAgADeQADNgQ")
     SERVER_HOST = os.getenv("SERVER_HOST", "152.42.212.81")
     SERVER_PORT = int(os.getenv("SERVER_PORT", "5000"))
     SERVER_SECRET_KEY = os.getenv("SERVER_SECRET_KEY", "default_secret_key")

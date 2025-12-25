@@ -45,8 +45,8 @@ async def main():
     dp = Dispatcher(storage=MemoryStorage())
     
     dp.message.middleware(BanCheckMiddleware())
-    dp.message.middleware(TokenLimitMiddleware())
     dp.message.middleware(ForceSubMiddleware())
+    dp.message.middleware(TokenLimitMiddleware())
     dp.message.middleware(VerificationMiddleware())
     
     dp.include_router(start.router)

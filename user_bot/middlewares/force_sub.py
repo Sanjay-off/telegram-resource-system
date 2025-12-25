@@ -11,7 +11,7 @@ from shared.config import config
 class ForceSubMiddleware(BaseMiddleware):
     def __init__(self):
         super().__init__()
-        self.exempt_commands = ['start', 'help']
+        self.exempt_commands = ['help']
     
     async def __call__(
         self,

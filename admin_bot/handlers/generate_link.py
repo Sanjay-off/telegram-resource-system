@@ -106,12 +106,21 @@ async def process_extra_message(message: Message, state: FSMContext, bot: Bot):
     
     await bot.send_photo(
         chat_id=message.chat.id,
-        photo="AgACAgUAAxkBAAIG0mlLncS1vcxKAgJDX3bgqXfR51xCAALOC2sbv5NYVrk-ViWJxqBrAQADAgADeQADNgQ",
+        photo=config.COVER_PHOTO,
         caption=template,
         parse_mode="HTML",
         reply_markup=get_download_button(config.USER_BOT_USERNAME, unique_id)
     )
-    
+    await bot.send_photo(
+        chat_id=config.PUBLIC_CHANNEL_USERNAME,
+        photo=config.COVER_PHOTO,
+        caption=template,
+        parse_mode="HTML",
+        reply_markup=get_download_button(
+            config.USER_BOT_USERNAME,
+            unique_id
+        )
+    )
     await state.clear()
 
 @router.callback_query(F.data == "cancel")

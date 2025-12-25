@@ -10,8 +10,8 @@ FILE_TYPE_TEXT = "text"
 
 USER_START_MESSAGE = """⚡️ Hᴇʏ, {username} ~
 <blockquote>
-I ᴀᴍ ᴀɴ ᴀᴅᴠᴀɴᴄᴇ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ ʙᴏᴛ.
-use the link in the public group to access the media
+ɪ ᴀᴍ ᴀɴ ᴀᴅᴠᴀɴᴄᴇ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ ʙᴏᴛ.
+ᴜsᴇ ᴛʜᴇ ʟɪɴᴋ ɪɴ ᴛʜᴇ ᴘᴜʙʟɪᴄ ɢʀᴏᴜᴘ ᴛᴏ ᴀᴄᴄᴇss ᴛʜᴇ ᴍᴇᴅɪᴀ
 </blockquote>
 """
 
@@ -54,13 +54,14 @@ BYPASS_DETECTED_MESSAGE = """🚨 ʙʏᴘᴀss ᴅᴇᴛᴇᴄᴛᴇᴅ 🚨
 </blockquote>
 """
 
-ACCESS_COUNT_MESSAGE = "<blockquote>You currently have {user_access_count} free media access</blockquote>"
+ACCESS_COUNT_MESSAGE = "<blockquote>ʏᴏᴜ ᴄᴜʀʀᴇɴᴛʟʏ ʜᴀᴠᴇ {user_access_count} ꜰʀᴇᴇ ᴍᴇᴅɪᴀ ᴀᴄᴄᴇss</blockquote>"
 
-NOT_AUTHORIZED_MESSAGE = "Not authorized"
+NOT_AUTHORIZED_MESSAGE = "ᴀᴄᴄᴇss ᴅᴇɴɪᴇᴅ • ɴᴏᴛ ᴀᴜᴛʜᴏʀɪᴢᴇᴅ"
 
-POST_TEMPLATE = """Post no-{post_no}
+POST_TEMPLATE = """
+ᴘᴏsᴛ ɴᴏ-{post_no}
 
-Description-{description}☠️
+ᴅᴇsᴄʀɪᴘᴛɪᴏɴ-{description}☠️
 
 <blockquote>{extra_message}</blockquote>"""
 

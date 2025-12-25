@@ -9,24 +9,24 @@ async def handle_verify_callback(message: Message, payload: str):
     parts = payload.split("_")
     
     if len(parts) != 3:
-        await message.answer("❌ Invalid verification link.")
+        await message.answer("❌ ɪɴᴠᴀʟɪᴅ ᴠᴇʀɪꜰɪᴄᴀᴛɪᴏɴ ʟɪɴᴋ")
         return
     
     unique_id = parts[1]
     try:
         user_id = int(parts[2])
     except ValueError:
-        await message.answer("❌ Invalid verification link.")
+        await message.answer("❌ ɪɴᴠᴀʟɪᴅ ᴠᴇʀɪꜰɪᴄᴀᴛɪᴏɴ ʟɪɴᴋ")
         return
     
     if message.from_user.id != user_id:
-        await message.answer("❌ This verification link is not for you.")
+        await message.answer("❌ ᴛʜɪs ᴠᴇʀɪꜰɪᴄᴀᴛɪᴏɴ ʟɪɴᴋ ɪs ɴᴏᴛ ꜰᴏʀ ʏᴏᴜ.")
         return
     
     token_data = await token_ops.get_token_by_unique_id_and_user(unique_id, user_id)
     
     if not token_data:
-        await message.answer("❌ Verification token not found or expired.")
+        await message.answer("❌ ᴠᴇʀɪꜰɪᴄᴀᴛɪᴏɴ ᴛᴏᴋᴇɴ ɴᴏᴛ ꜰᴏᴜɴᴅ ᴏʀ ᴇxᴘɪʀᴇᴅ.")
         return
     
     status = token_data.get('status')
@@ -58,4 +58,4 @@ async def handle_verify_callback(message: Message, payload: str):
         )
     
     else:
-        await message.answer("<b>❌Please complete the verification process first.</b>",parse_mode="HTML")
+        await message.answer("<b>❌ ᴘʟᴇᴀsᴇ ᴄᴏᴍᴘʟᴇᴛᴇ ᴛʜᴇ ᴠᴇʀɪꜰɪᴄᴀᴛɪᴏɴ ᴘʀᴏᴄᴇss ꜰɪʀsᴛ.</b>",parse_mode="HTML")

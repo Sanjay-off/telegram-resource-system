@@ -25,13 +25,13 @@ def get_verification_keyboard(verify_url: str, how_to_verify_link: Optional[str]
     keyboard = InlineKeyboardBuilder()
     
     keyboard.add(InlineKeyboardButton(
-        text="✅ Verify Now",
+        text="✅ ᴠᴇʀɪꜰʏ ɴᴏᴡ",
         url=verify_url
     ))
     
     if how_to_verify_link:
         keyboard.add(InlineKeyboardButton(
-            text="❓ How to Verify",
+            text="❓ ʜᴏᴡ ᴛᴏ ᴠᴇʀɪꜰʏ",
             url=how_to_verify_link
         ))
     
@@ -45,11 +45,11 @@ def get_deleted_message_keyboard(bot_username: str, unique_id: str) -> InlineKey
     
     keyboard.row(
         InlineKeyboardButton(
-            text="♻️ Click Here",
+            text="♻️ ᴄʟɪᴄᴋ ʜᴇʀᴇ",
             url=deeplink
         ),
         InlineKeyboardButton(
-            text="❌ Close",
+            text="❌ ᴄʟᴏsᴇ",
             callback_data="close_message"
         )
     )
